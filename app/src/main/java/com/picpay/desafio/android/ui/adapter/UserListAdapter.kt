@@ -1,12 +1,18 @@
-package com.picpay.desafio.android
+package com.picpay.desafio.android.ui.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.picpay.desafio.android.R
+import com.picpay.desafio.android.data.entities.User
+import com.picpay.desafio.android.ui.viewHolders.UserListItemViewHolder
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.list_item_user.view.*
 
 class UserListAdapter : RecyclerView.Adapter<UserListItemViewHolder>() {
-
     var users = emptyList<User>()
         set(value) {
             val result = DiffUtil.calculateDiff(
@@ -31,4 +37,5 @@ class UserListAdapter : RecyclerView.Adapter<UserListItemViewHolder>() {
     }
 
     override fun getItemCount(): Int = users.size
+
 }
