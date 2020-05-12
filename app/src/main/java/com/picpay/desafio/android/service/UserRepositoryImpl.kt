@@ -28,7 +28,5 @@ class UserRepositoryImpl(
 
     override suspend fun saveUsers(users: List<UserTable>) = withContext(Dispatchers.Default) { userDao.saveAll(users) }
 
-
-
 }
 

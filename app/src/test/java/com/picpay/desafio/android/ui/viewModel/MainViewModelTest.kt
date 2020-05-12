@@ -32,11 +32,7 @@ class MainViewModelTest : BaseTest() {
     private lateinit var errorObserver: Observer<String>
 
     @Mock
-    private lateinit var userRepository: UserRepository
-
-    private lateinit var findUsersUseCase = FindUsersUseCaseImpl(userRepository)
-
-//    private lateinit var findUsersUseCase: FindUsersUseCase
+    private lateinit var findUsersUseCase: FindUsersUseCase
 
     private lateinit var mainViewModel: MainViewModel
 
