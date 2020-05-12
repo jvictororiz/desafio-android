@@ -8,14 +8,19 @@ import com.picpay.desafio.android.base.BaseTest
 import com.picpay.desafio.android.R
 import com.picpay.desafio.android.data.entities.ResultRest
 import com.picpay.desafio.android.data.entities.User
+import com.picpay.desafio.android.service.UserRepository
 import com.picpay.desafio.android.ui.navigations.mainFlow.MainViewModel
 import com.picpay.desafio.android.usecase.FindUsersUseCase
+import com.picpay.desafio.android.usecase.FindUsersUseCaseImpl
+import com.picpay.desafio.android.usecase.FindUsersUseCaseImplTest
 import junit.framework.Assert.assertNotNull
 import junit.framework.Assert.assertNull
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
+import org.mockito.MockitoAnnotations
 
 
 class MainViewModelTest : BaseTest() {
@@ -25,22 +30,25 @@ class MainViewModelTest : BaseTest() {
     private lateinit var alertOfflineObserver: Observer<Int>
     @Mock
     private lateinit var errorObserver: Observer<String>
+
     @Mock
-    private lateinit var findUsersUseCase: FindUsersUseCase
+    private lateinit var userRepository: UserRepository
+
+    private lateinit var findUsersUseCase = FindUsersUseCaseImpl(userRepository)
+
+//    private lateinit var findUsersUseCase: FindUsersUseCase
 
     private lateinit var mainViewModel: MainViewModel
 
-
     @Before
-    fun init(){
-        mainViewModel =
-            MainViewModel(
-                findUsersUseCase
-            )
+    fun start() {
+        mainViewModel = MainViewModel(findUsersUseCase)
     }
+
 
     @Test
     fun `when viewModel calls listAllUsers with success then sets resultUsers with success`() {
+        mainViewModel = MainViewModel(findUsersUseCase)
         runBlocking { whenever(findUsersUseCase.listAllUsers()).thenReturn(ResultRest.success(listOf())) }
         mainViewModel.resultUsersObserver.observeForever(resultUsersObserver)
         mainViewModel.findAllUser()
@@ -62,7 +70,7 @@ class MainViewModelTest : BaseTest() {
     }
 
     @Test
-    fun `when viewmodel calls listAll offline then return the datas in base with sucess`()  {
+    fun `when viewmodel calls listAll offline then return the datas in base with sucess`() {
         val expectedOfflineUsers = listOf(User("img", "joao", 1, "joaov"))
         runBlocking {
             whenever(findUsersUseCase.listAllUsers()).thenReturn(ResultRest.cacheSuccess(expectedOfflineUsers, mock()))
@@ -77,5 +85,11 @@ class MainViewModelTest : BaseTest() {
         verify(resultUsersObserver).onChanged(expectedOfflineUsers)
     }
 
+    class TestFindCase  :FindUsersUseCase{
+        override suspend fun listAllUsers(): ResultRest<List<User>?> {
+            return ResultRest.success(listOf())
+        }
+
+    }
 
 }

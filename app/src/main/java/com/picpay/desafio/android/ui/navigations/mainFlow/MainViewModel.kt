@@ -12,6 +12,10 @@ class MainViewModel(private val findUserUseCase: FindUsersUseCase) : BaseViewMod
     val alertOfflineObserver = MutableLiveData<Int>()
     val errorObserver = MutableLiveData<String>()
 
+    init {
+        findAllUser()
+    }
+
 
     fun findAllUser() = launch {
         loadUsesrObserver.value = true

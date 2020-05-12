@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainListFragment : Fragment() {
-    val viewModel: MainViewModel by activityViewModels()
+    val viewModel: MainViewModel by viewModel()
+    //activityViewModels
 
     private val adapter: UserListAdapter by lazy {
         UserListAdapter()

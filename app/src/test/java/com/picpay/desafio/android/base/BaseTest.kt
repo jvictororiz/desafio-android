@@ -18,6 +18,7 @@ import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.koin.test.mock.MockProviderRule
 import org.mockito.Mockito
+import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
 /**
@@ -41,6 +42,7 @@ open class BaseTest : KoinTest {
     @ExperimentalCoroutinesApi
     @Before
     fun setUp() {
+        MockitoAnnotations.initMocks(this)
         Dispatchers.setMain(Dispatchers.Unconfined)
         startKoin {
             androidContext(context)
