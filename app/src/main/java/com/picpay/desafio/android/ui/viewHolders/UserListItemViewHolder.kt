@@ -12,8 +12,7 @@ import kotlinx.android.synthetic.main.list_item_user.view.*
 class UserListItemViewHolder(
     itemView: View
 ) : RecyclerView.ViewHolder(itemView) {
-
-    fun bind(user: User) {
+    fun bind(user: User, eventClick: ((user: User) -> Unit)?) {
         itemView.name.text = user.name
         itemView.username.text = user.username
         itemView.progressBar.visibility = View.VISIBLE
@@ -23,5 +22,11 @@ class UserListItemViewHolder(
             callbackFinish = {
                 itemView.progressBar.visibility = View.GONE
             })
+
+        eventClick?.let { click ->
+            itemView.setOnClickListener {
+                click.invoke(user)
+            }
+        }
     }
 }

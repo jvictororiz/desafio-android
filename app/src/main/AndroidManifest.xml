@@ -19,7 +19,7 @@
         <activity
             android:screenOrientation="fullSensor"
             android:configChanges="orientation|keyboardHidden"
-            android:name=".ui.activity.MainActivity">
+            android:name=".ui.navigations.mainFlow.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

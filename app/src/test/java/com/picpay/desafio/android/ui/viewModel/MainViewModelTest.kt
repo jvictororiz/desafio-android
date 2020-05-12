@@ -8,6 +8,7 @@ import com.picpay.desafio.android.base.BaseTest
 import com.picpay.desafio.android.R
 import com.picpay.desafio.android.data.entities.ResultRest
 import com.picpay.desafio.android.data.entities.User
+import com.picpay.desafio.android.ui.navigations.mainFlow.MainViewModel
 import com.picpay.desafio.android.usecase.FindUsersUseCase
 import junit.framework.Assert.assertNotNull
 import junit.framework.Assert.assertNull
@@ -27,12 +28,15 @@ class MainViewModelTest : BaseTest() {
     @Mock
     private lateinit var findUsersUseCase: FindUsersUseCase
 
-    private lateinit var mainViewModel:MainViewModel
+    private lateinit var mainViewModel: MainViewModel
 
 
     @Before
     fun init(){
-        mainViewModel = MainViewModel(findUsersUseCase)
+        mainViewModel =
+            MainViewModel(
+                findUsersUseCase
+            )
     }
 
     @Test

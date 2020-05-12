@@ -1,11 +1,10 @@
-package com.picpay.desafio.android.ui.viewModel
+package com.picpay.desafio.android.ui.navigations.mainFlow
 
 import androidx.lifecycle.MutableLiveData
 import com.picpay.desafio.android.R
 import com.picpay.desafio.android.data.entities.User
 import com.picpay.desafio.android.ui.base.BaseViewModel
 import com.picpay.desafio.android.usecase.FindUsersUseCase
-import com.picpay.desafio.android.usecase.FindUsersUseCaseImpl
 
 class MainViewModel(private val findUserUseCase: FindUsersUseCase) : BaseViewModel() {
     val loadUsesrObserver = MutableLiveData<Boolean>()

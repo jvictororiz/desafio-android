@@ -25,15 +25,16 @@ class UserListAdapter : RecyclerView.Adapter<UserListItemViewHolder>() {
             field = value
         }
 
+    var eventClick: ((user: User) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserListItemViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item_user, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_user, parent, false)
 
         return UserListItemViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: UserListItemViewHolder, position: Int) {
-        holder.bind(users[position])
+        holder.bind(users[position], eventClick)
     }
 
     override fun getItemCount(): Int = users.size

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/mainListFragment">
+
+    <fragment
+        android:id="@+id/mainListFragment"
+        android:name="com.picpay.desafio.android.ui.navigations.mainFlow.MainListFragment"
+        android:label="MainListFragment" >
+        <action
+            android:id="@+id/action_mainListFragment_to_mainUserDetailedFragment"
+            app:destination="@id/mainUserDetailedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainUserDetailedFragment"
+        android:name="com.picpay.desafio.android.ui.navigations.mainFlow.MainUserDetailedFragment"
+        android:label="MainUserDetailedFragment">
+        <argument
+            android:name="user"
+            app:argType="com.picpay.desafio.android.data.entities.User" />
+    </fragment>
+</navigation>
